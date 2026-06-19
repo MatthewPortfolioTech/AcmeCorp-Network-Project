@@ -1,0 +1,113 @@
+Building configuration...
+
+Current configuration : 1306 bytes
+!
+version 16.6.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SGP-R1
+!
+!
+!
+enable secret 5 $1$mERr$21YtDiOUJYwwAvQcEFdjh0
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description T0_SGP-SW-FLOOR1
+ ip address 10.1.33.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/2/0
+ description T0_ISP-CORE
+ ip address 10.1.254.9 255.255.255.252
+ clock rate 2000000
+!
+interface Serial0/2/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 4.4.4.4
+ log-adjacency-changes
+ passive-interface GigabitEthernet0/0/0
+ network 10.1.33.0 0.0.0.255 area 0
+ network 10.1.254.8 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C
+*** AcmeCorp - Authorised Access Only ***
+*** Singapore Branch Router ***
+^C
+!
+!
+!
+!
+line con 0
+ exec-timeout 5 0
+ password Acme-Con!
+ login
+!
+line aux 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password Acme-VTY!
+ login
+ transport input telnet
+!
+!
+!
+end
