@@ -3,7 +3,7 @@
 A multi-phase enterprise network built in Cisco 
 Packet Tracer for CCNA 200-301 study and portfolio.
 
-![Network Topology](Phase-04-OSPF/diagrams/P04-S10-full-topology-four-sites.png)
+![Network Topology](Phase-04-OSPF/diagrams/P04-S10-Full-Topology-Four-Sites.png)
 
 ## Scenario
 AcmeCorp is a global company with sites across 
