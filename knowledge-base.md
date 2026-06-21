@@ -70,3 +70,32 @@ Fix process:
 3. Delete cable → reconnect to correct ports
 4. Set clock rate on DCE end
 5. Make sure IP is on correct interface
+
+
+## DHCP verification commands
+show ip dhcp binding   ← see all leased IPs + MAC addresses
+show ip dhcp pool      ← see pool stats, leased vs available
+show ip dhcp conflict  ← check for duplicate IPs (should be empty!)
+
+## DHCP best practices
+- Always exclude infrastructure IPs (.1 to .9)
+- One pool per subnet/VLAN
+- lease command not supported in older PT versions
+- dns-server and domain-name make PCs fully configured
+
+## NAT Troubleshooting
+Symptoms: ping timing out after NAT configured
+
+Checklist:
+1. Default route on inside router pointing to ISP
+2. NAT outside interface has PUBLIC IP not private
+3. show ip nat translations — Inside Global must 
+   show public IP not private
+4. ISP router knows route to NAT public subnet
+5. Internet-side routers have return route back 
+   to NAT public IP
+
+Key commands:
+clear ip nat translation *  ← clear old translations
+show ip nat translations    ← verify NAT working
+show ip nat statistics      ← check hit/miss counts
